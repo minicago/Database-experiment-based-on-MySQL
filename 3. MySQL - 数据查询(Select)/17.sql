@@ -13,8 +13,8 @@ from (
             select
                 pro_purchase_time t,
                 sum(pro_quantity * f_amount) amount,
-                @row := datediff(pro_purchase_time, "2021-12-31") - 2 * week(pro_purchase_time) workday
-            from property, fund, (select @row) a
+                datediff(pro_purchase_time, "2021-12-31") - 2 * week(pro_purchase_time) workday
+            from property, fund
             where pro_purchase_time like "2022-02-%"
             and pro_type = 3
             and pro_pif_id = f_id
